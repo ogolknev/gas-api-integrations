@@ -95,7 +95,7 @@ declare namespace Wildberries {
                     supplier: {
                         stocks: typeof Api.V1.Supplier.Stocks.method,
                         orders: typeof Api.V1.Supplier.Orders.method,
-
+                        sales: typeof Api.V1.Supplier.Sales.method
                     }
                 }
             }
@@ -110,26 +110,26 @@ declare namespace Wildberries {
                         interface Query {
                             dateFrom: string
                         }
-                        interface Response {
-                            lastChangeDate: string;
-                            warehouseName: string;
-                            supplierArticle: string;
-                            nmId: number;
-                            barcode: string;
-                            quantity: number;
-                            inWayToClient: number;
-                            inWayFromClient: number;
-                            quantityFull: number;
-                            category: string;
-                            subject: string;
-                            brand: string;
-                            techSize: string;
-                            Price: number;
-                            Discount: number;
-                            isSupply: boolean;
-                            isRealization: boolean;
-                            SCCode: string;
-                        }
+                        type Response = Array<{
+                            lastChangeDate: string
+                            warehouseName: string
+                            supplierArticle: string
+                            nmId: number
+                            barcode: string
+                            quantity: number
+                            inWayToClient: number
+                            inWayFromClient: number
+                            quantityFull: number
+                            category: string
+                            subject: string
+                            brand: string
+                            techSize: string
+                            Price: number
+                            Discount: number
+                            isSupply: boolean
+                            isRealization: boolean
+                            SCCode: string
+                        }>
                     }
                     namespace Orders {
 
@@ -139,37 +139,76 @@ declare namespace Wildberries {
                             dateFrom: string,
                             flag: 0 | 1
                         }
-                        interface Response {
-                            date: string;
-                            lastChangeDate: string;
-                            warehouseName: string;
-                            countryName: string;
-                            oblastOkrugName: string;
-                            regionName: string;
-                            supplierArticle: string;
-                            nmId: number;
-                            barcode: string;
-                            category: string;
-                            subject: string;
-                            brand: string;
-                            techSize: string;
-                            incomeID: number;
-                            isSupply: boolean;
-                            isRealization: boolean;
-                            totalPrice: number;
-                            discountPercent: number;
-                            spp: number;
-                            finishedPrice: number;
-                            priceWithDisc: number;
-                            isCancel: boolean;
-                            cancelDate: string;
-                            orderType: string;
-                            sticker: string;
-                            gNumber: string;
-                            srid: string;
-                        }
+                        type Response = Array<{
+                            date: string
+                            lastChangeDate: string
+                            warehouseName: string
+                            countryName: string
+                            oblastOkrugName: string
+                            regionName: string
+                            supplierArticle: string
+                            nmId: number
+                            barcode: string
+                            category: string
+                            subject: string
+                            brand: string
+                            techSize: string
+                            incomeID: number
+                            isSupply: boolean
+                            isRealization: boolean
+                            totalPrice: number
+                            discountPercent: number
+                            spp: number
+                            finishedPrice: number
+                            priceWithDisc: number
+                            isCancel: boolean
+                            cancelDate: string
+                            orderType: string
+                            sticker: string
+                            gNumber: string
+                            srid: string
+                        }>
                     }
-                    // namespace 
+                    namespace Sales {
+
+                        function method(query: Query): Response
+
+                        interface Query {
+                            dateFrom: string,
+                            flag: 0 | 1
+                        }
+                        type Response = Array<{
+                            date: string
+                            lastChangeDate: string
+                            warehouseName: string
+                            countryName: string
+                            oblastOkrugName: string
+                            regionName: string
+                            supplierArticle: string
+                            nmId: number
+                            barcode: string
+                            category: string
+                            subject: string
+                            brand: string
+                            techSize: string
+                            incomeID: number
+                            isSupply: boolean
+                            isRealization: boolean
+                            totalPrice: number
+                            discountPercent: number
+                            spp: number
+                            paymentSaleAmount: number
+                            forPay: number
+                            finishedPrice: number
+                            priceWithDisc: number
+                            saleID: string
+                            orderType: string
+                            sticker: string
+                            gNumber: string
+                            srid: string
+                        }>
+
+                    }
                 }
             }
         }
