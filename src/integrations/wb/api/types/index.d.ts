@@ -74,7 +74,44 @@ declare namespace Wildberries {
     namespace DiscountsPrices { }
     namespace Supplies { }
     namespace Marketplace { }
-    namespace Statistics { }
+    namespace Statistics {
+        class Instance {
+            v1: {
+                supplier: {
+                    stocks: (query: V1.Supplier.Stocks.Query) => V1.Supplier.Stocks.Response
+                }
+            }
+        }
+        namespace V1 {
+            namespace Supplier {
+                namespace Stocks {
+                    interface Query {
+                        dateFrom: string
+                    }
+                    interface Response {
+                        lastChangeDate: string;
+                        warehouseName: string;
+                        supplierArticle: string;
+                        nmId: number;
+                        barcode: string;
+                        quantity: number;
+                        inWayToClient: number;
+                        inWayFromClient: number;
+                        quantityFull: number;
+                        category: string;
+                        subject: string;
+                        brand: string;
+                        techSize: string;
+                        Price: number;
+                        Discount: number;
+                        isSupply: boolean;
+                        isRealization: boolean;
+                        SCCode: string;
+                    }
+                }
+            }
+        }
+    }
     namespace SellerAnalytics {
         class Instance { }
         namespace V2 {
