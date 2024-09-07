@@ -75,9 +75,119 @@ declare namespace Wildberries {
     namespace Supplies { }
     namespace Marketplace { }
     namespace Statistics { }
-    namespace SellerAnalytics { }
+    namespace SellerAnalytics {
+        class Instance { }
+        namespace V2 {
+            namespace NmReport {
+                namespace Detail {
+                    interface RequestBody {
+                        brandNames: string[];
+                        objectIDs: number[];
+                        tagIDs: number[];
+                        nmIDs: number[];
+                        timezone: string;
+                        period: {
+                            field: string;
+                            mode: string;
+                        };
+                        orderBy: {
+                            begin: string;
+                            end: string;
+                        };
+                        page: number;
+                    }
+                    interface Response {
+                        data: {
+                            page: number;
+                            isNextPage: boolean;
+                            cards: {
+                                nmID: number;
+                                vendorCode: string;
+                                brandName: string;
+                                tags: {
+                                    id: number;
+                                    name: string;
+                                }[];
+                                object: {
+                                    id: number;
+                                    name: string;
+                                };
+                                statistics: {
+                                    selectedPeriod: {
+                                        begin: string;
+                                        end: string;
+                                        openCardCount: number;
+                                        addToCartCount: number;
+                                        ordersCount: number;
+                                        ordersSumRub: number;
+                                        buyoutsCount: number;
+                                        buyoutsSumRub: number;
+                                        cancelCount: number;
+                                        cancelSumRub: number;
+                                        avgPriceRub: number;
+                                        avgOrdersCountPerDay: number;
+                                        conversions: {
+                                            addToCartPercent: number;
+                                            cartToOrderPercent: number;
+                                            buyoutsPercent: number;
+                                        };
+                                    };
+                                    previousPeriod: {
+                                        begin: string;
+                                        end: string;
+                                        openCardCount: number;
+                                        addToCartCount: number;
+                                        ordersCount: number;
+                                        ordersSumRub: number;
+                                        buyoutsCount: number;
+                                        buyoutsSumRub: number;
+                                        cancelCount: number;
+                                        cancelSumRub: number;
+                                        avgPriceRub: number;
+                                        avgOrdersCountPerDay: number;
+                                        conversions: {
+                                            addToCartPercent: number;
+                                            cartToOrderPercent: number;
+                                            buyoutsPercent: number;
+                                        };
+                                    };
+                                    periodComparison: {
+                                        openCardDynamics: number;
+                                        addToCartDynamics: number;
+                                        ordersCountDynamics: number;
+                                        ordersSumRubDynamics: number;
+                                        buyoutsCountDynamics: number;
+                                        buyoutsSumRubDynamics: number;
+                                        cancelCountDynamics: number;
+                                        cancelSumRubDynamics: number;
+                                        avgOrdersCountPerDayDynamics: number;
+                                        avgPriceRubDynamics: number;
+                                        conversions: {
+                                            addToCartPercent: number;
+                                            cartToOrderPercent: number;
+                                            buyoutsPercent: number;
+                                        };
+                                    };
+                                };
+                                stocks: {
+                                    stocksMp: number;
+                                    stocksWb: number;
+                                };
+                            }[];
+                        };
+                        error: boolean;
+                        errorText: string;
+                        additionalErrors: {
+                            field: string;
+                            description: string;
+                        }[];
+                    }
+                }
+            }
+        }
+    }
     namespace Advert {
-        class Instance {}
+        class Instance { }
         namespace V1 {
             namespace Promotion {
                 namespace Count {
