@@ -98,9 +98,87 @@ declare namespace Wildberries {
         }
         namespace V2 {
             namespace Fullstats {
-                interface RequestBody {
-                    id: number;
-                    dates: string[];
+                namespace RequestBody {
+                    interface WithDate {
+                        id: number;
+                        dates?: string[];
+                    }
+                    interface WithInterval {
+                        id: number;
+                        interval: {
+                            begin: string;
+                            end: string;
+                        };
+                    }
+                }
+                namespace Response {
+                    interface WithDate extends Common {
+                        dates: string[];
+                    }
+                    interface WithInterval extends Common {
+                        interval: {
+                            begin: string,
+                            end: string
+                        }
+                    }
+                    interface Common {
+                        views: number;
+                        clicks: number;
+                        ctr: number;
+                        cpc: number;
+                        sum: number;
+                        atbs: number;
+                        orders: number;
+                        cr: number;
+                        shks: number;
+                        sum_price: number;
+                        days: {
+                            date: string;
+                            views: number;
+                            clicks: number;
+                            ctr: number;
+                            cpc: number;
+                            sum: number;
+                            atbs: number;
+                            orders: number;
+                            cr: number;
+                            shks: number;
+                            sum_price: number;
+                            apps: {
+                                views: number;
+                                clicks: number;
+                                ctr: number;
+                                cpc: number;
+                                sum: number;
+                                atbs: number;
+                                orders: number;
+                                cr: number;
+                                shks: number;
+                                sum_price: number;
+                                nm: {
+                                    views: number;
+                                    clicks: number;
+                                    ctr: number;
+                                    cpc: number;
+                                    sum: number;
+                                    atbs: number;
+                                    orders: number;
+                                    cr: number;
+                                    shks: number;
+                                    sum_price: number;
+                                    name: string;
+                                    nmId: number;
+                                }[];
+                                appType: number;
+                            }[];
+                        }[];
+                        boosterStats: {
+                            date: string;
+                            nm: number;
+                            avg_position: number;
+                        }[];
+                        advertId: number;
+                    }
                 }
             }
         }
