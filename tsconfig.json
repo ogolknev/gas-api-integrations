@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "types": [
+            "google-apps-script"
+        ],
+        "strict": true
+    }
+}
