@@ -93,7 +93,9 @@ declare namespace Wildberries {
             api: {
                 v1: {
                     supplier: {
-                        stocks: typeof Api.V1.Supplier.Stocks.method
+                        stocks: typeof Api.V1.Supplier.Stocks.method,
+                        orders: typeof Api.V1.Supplier.Orders.method,
+
                     }
                 }
             }
@@ -129,6 +131,45 @@ declare namespace Wildberries {
                             SCCode: string;
                         }
                     }
+                    namespace Orders {
+
+                        function method(query: Query): Response
+
+                        interface Query {
+                            dateFrom: string,
+                            flag: 0 | 1
+                        }
+                        interface Response {
+                            date: string;
+                            lastChangeDate: string;
+                            warehouseName: string;
+                            countryName: string;
+                            oblastOkrugName: string;
+                            regionName: string;
+                            supplierArticle: string;
+                            nmId: number;
+                            barcode: string;
+                            category: string;
+                            subject: string;
+                            brand: string;
+                            techSize: string;
+                            incomeID: number;
+                            isSupply: boolean;
+                            isRealization: boolean;
+                            totalPrice: number;
+                            discountPercent: number;
+                            spp: number;
+                            finishedPrice: number;
+                            priceWithDisc: number;
+                            isCancel: boolean;
+                            cancelDate: string;
+                            orderType: string;
+                            sticker: string;
+                            gNumber: string;
+                            srid: string;
+                        }
+                    }
+                    // namespace 
                 }
             }
         }
