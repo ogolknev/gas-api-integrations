@@ -263,7 +263,7 @@ export namespace Sections {
             namespace RequestBody {
                 type WithDate = Array<{
                     id: number
-                    dates: Array<string>
+                    dates?: Array<string>
                 }>
                 type WithInterval = Array<{
                     id: number

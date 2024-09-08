@@ -19,10 +19,4 @@ export declare class Advert extends API_Section implements Sections.Advert.Metho
     campaignsStatistics(payload: Sections.Advert.CampaignsStatistics.RequestBody.WithInterval): Sections.Advert.CampaignsStatistics.Response.WithInterval;
     constructor(access: string);
 }
-export declare class Wildberries {
-    statistics: Statistics;
-    analytics: Analytics;
-    advert: Advert;
-    constructor(access: string);
-}
 export {};

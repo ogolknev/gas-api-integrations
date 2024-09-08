@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Wildberries = exports.Advert = exports.Analytics = exports.Statistics = void 0;
+exports.Advert = exports.Analytics = exports.Statistics = void 0;
 const utils_1 = require("../../utils");
 class API_Section {
     constructor(access, baseUrl) {
@@ -49,11 +49,3 @@ class Advert extends API_Section {
     }
 }
 exports.Advert = Advert;
-class Wildberries {
-    constructor(access) {
-        this.statistics = new Statistics(access);
-        this.analytics = new Analytics(access);
-        this.advert = new Advert(access);
-    }
-}
-exports.Wildberries = Wildberries;
