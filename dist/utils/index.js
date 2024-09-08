@@ -4,6 +4,9 @@ exports.configuredFetch = configuredFetch;
 exports.setQuery = setQuery;
 function configuredFetch(baseUrl, baseOptions) {
     return (url, options) => {
+        if (options === null || options === void 0 ? void 0 : options.payload) {
+            options.payload = JSON.stringify(options.payload);
+        }
         return JSON.parse(UrlFetchApp.fetch(baseUrl + url, Object.assign(Object.assign({}, baseOptions), options)).getContentText());
     };
 }
