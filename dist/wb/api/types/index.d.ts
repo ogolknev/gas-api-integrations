@@ -6,9 +6,11 @@ export namespace Wildberries {
                     cards: {
                         upload: {
                             post: typeof Content.V2.Cards.Upload.post,
+                            utils?
                         } 
                         update: {
-                            post: typeof Content.V2.Cards.Update.post
+                            post: typeof Content.V2.Cards.Update.post,
+                            utils?
                         } 
                     }
                 }
@@ -103,12 +105,15 @@ export namespace Wildberries {
                     supplier: {
                         stocks: {
                             get: typeof Api.V1.Supplier.Stocks.get,
+                            utils?
                         }
                         orders: {
                             get: typeof Api.V1.Supplier.Orders.get,
+                            utils?
                         }
                         sales: {
-                            get: typeof Api.V1.Supplier.Sales.get
+                            get: typeof Api.V1.Supplier.Sales.get,
+                            utils?
                         }
                     }
                 }
@@ -238,7 +243,8 @@ export namespace Wildberries {
                 v2: {
                     nmReport: {
                         detail: {
-                            post: typeof Api.V2.NmReport.Detail.post
+                            post: typeof Api.V2.NmReport.Detail.post,
+                            utils?
                         }
                     }
                 }
@@ -366,13 +372,15 @@ export namespace Wildberries {
                 v1: {
                     promotion: {
                         count: {
-                            get: typeof Adv.V1.Promotion.Count.get
+                            get: typeof Adv.V1.Promotion.Count.get,
+                            utils?
                         }
                     }
                 },
                 v2: {
                     fullstats: {
                         post: typeof Adv.V2.Fullstats.post
+                        utils?
                     }
                 }
             }

@@ -9,12 +9,15 @@ export declare class Statistics extends API_Section implements Wildberries.Stati
             supplier: {
                 stocks: {
                     get: typeof Wildberries.Statistics.Api.V1.Supplier.Stocks.get;
+                    utils?: any;
                 };
                 orders: {
                     get: typeof Wildberries.Statistics.Api.V1.Supplier.Orders.get;
+                    utils?: any;
                 };
                 sales: {
                     get: typeof Wildberries.Statistics.Api.V1.Supplier.Sales.get;
+                    utils?: any;
                 };
             };
         };
@@ -27,6 +30,7 @@ export declare class SellerAnalytics extends API_Section implements Wildberries.
             nmReport: {
                 detail: {
                     post: typeof Wildberries.SellerAnalytics.Api.V2.NmReport.Detail.post;
+                    utils?: any;
                 };
             };
         };
@@ -39,12 +43,14 @@ export declare class Advert extends API_Section implements Wildberries.Advert.In
             promotion: {
                 count: {
                     get: typeof Wildberries.Advert.Adv.V1.Promotion.Count.get;
+                    utils?: any;
                 };
             };
         };
         v2: {
             fullstats: {
                 post: typeof Wildberries.Advert.Adv.V2.Fullstats.post;
+                utils?: any;
             };
         };
     };
