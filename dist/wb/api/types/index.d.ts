@@ -237,12 +237,12 @@ export namespace Wildberries {
                             nmIDs?: number[];
                             timezone?: string;
                             period: {
-                                field: string;
-                                mode: string;
-                            };
-                            orderBy?: {
                                 begin: string;
                                 end: string;
+                            };
+                            orderBy?: {
+                                field: string;
+                                mode: string;
                             };
                             page: number;
                         }
