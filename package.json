@@ -1,6 +1,6 @@
 {
   "name": "gas-api-integrations",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Module to simplify the integration of the marketplace API into Google Apps Script.",
   "main": "dist/index.js",
   "files": [
