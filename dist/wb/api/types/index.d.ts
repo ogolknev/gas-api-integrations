@@ -392,16 +392,18 @@ export namespace Wildberries {
                         }
                     }
                     namespace Response {
-                        interface WithDate extends Common {
+                        type WithDate = WithDateElement[]
+                        type WithInterval = WithIntervalElement[]
+                        interface WithDateElement extends Common {
                             dates: string[];
                         }
-                        interface WithInterval extends Common {
+                        interface WithIntervalElement extends Common {
                             interval: {
                                 begin: string,
                                 end: string
                             }
                         }
-                        interface Common {
+                        interface CommonElement {
                             views: number;
                             clicks: number;
                             ctr: number;
