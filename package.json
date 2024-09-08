@@ -7,7 +7,7 @@
     "dist/"
   ],
   "scripts": {
-    "publish": "npm run build && npm version patch && npm publish",
+    "patch": "npm run build && npm version patch && npm publish",
     "build": "tsc && npm run copy-dts",
     "copy-dts": "xcopy /s /y src\\*.d.ts dist\\"
   },
