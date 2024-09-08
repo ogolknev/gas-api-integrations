@@ -55,9 +55,9 @@ export namespace Wildberries {
                         interface RequestBody {
                             nmID: number;
                             vendorCode: string;
-                            brand: string;
-                            title: string;
-                            description: string;
+                            brand?: string;
+                            title?: string;
+                            description?: string;
                             dimensions: {
                                 length: number;
                                 width: number;
@@ -137,7 +137,7 @@ export namespace Wildberries {
 
                         interface Query {
                             dateFrom: string,
-                            flag: 0 | 1
+                            flag?: 0 | 1
                         }
                         type Response = Array<{
                             date: string
@@ -175,7 +175,7 @@ export namespace Wildberries {
 
                         interface Query {
                             dateFrom: string,
-                            flag: 0 | 1
+                            flag?: 0 | 1
                         }
                         type Response = Array<{
                             date: string
@@ -231,16 +231,16 @@ export namespace Wildberries {
                         function method(payload: RequestBody): Response
 
                         interface RequestBody {
-                            brandNames: string[];
-                            objectIDs: number[];
-                            tagIDs: number[];
-                            nmIDs: number[];
-                            timezone: string;
+                            brandNames?: string[];
+                            objectIDs?: number[];
+                            tagIDs?: number[];
+                            nmIDs?: number[];
+                            timezone?: string;
                             period: {
                                 field: string;
                                 mode: string;
                             };
-                            orderBy: {
+                            orderBy?: {
                                 begin: string;
                                 end: string;
                             };
