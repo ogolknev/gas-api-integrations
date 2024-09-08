@@ -1,8 +1,11 @@
 {
   "name": "gas-api-integrations",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Module to simplify the integration of the marketplace API into Google Apps Script.",
   "main": "dist/index.js",
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "build": "tsc && npm run copy-dts",
     "copy-dts": "xcopy /s /y src\\*.d.ts dist\\"
