@@ -1,8 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Advert = exports.SellerAnalytics = exports.Statistics = void 0;
+exports.Wildberries = exports.Advert = exports.Analytics = exports.Statistics = void 0;
 const utils_1 = require("../../utils");
-const types_1 = require("./types");
 class API_Section {
     constructor(access, baseUrl) {
         this.fetch = (0, utils_1.configuredFetch)(baseUrl, {
@@ -15,78 +14,46 @@ class API_Section {
     }
 }
 class Statistics extends API_Section {
+    warehouse(query) {
+        return this.fetch((0, utils_1.setQuery)("/api/v1/supplier/stocks", query), { method: 'get' });
+    }
+    orders(query) {
+        return this.fetch((0, utils_1.setQuery)("/api/v1/supplier/orders", query), { method: 'get' });
+    }
+    sales(query) {
+        return this.fetch((0, utils_1.setQuery)("/api/v1/supplier/sales", query), { method: 'get' });
+    }
     constructor(access) {
         super(access, "https://statistics-api.wildberries.ru");
-        const self = this;
-        this.api = {
-            v1: {
-                supplier: {
-                    stocks: {
-                        get(query) {
-                            return self.fetch((0, utils_1.setQuery)("/api/v1/supplier/stocks", query), { method: 'get' });
-                        },
-                    },
-                    orders: {
-                        get(query) {
-                            return self.fetch((0, utils_1.setQuery)("/api/v1/supplier/orders", query), { method: 'get' });
-                        }
-                    },
-                    sales: {
-                        get(query) {
-                            return self.fetch((0, utils_1.setQuery)("/api/v1/supplier/sales", query), { method: 'get' });
-                        }
-                    }
-                }
-            }
-        };
     }
 }
 exports.Statistics = Statistics;
-class SellerAnalytics extends API_Section {
+class Analytics extends API_Section {
+    pcStatistics(payload) {
+        return this.fetch("/api/v2/nm-report/detail", { method: 'post', payload });
+    }
     constructor(access) {
         super(access, "https://seller-analytics-api.wildberries.ru");
-        const self = this;
-        this.api = {
-            v2: {
-                nmReport: {
-                    detail: {
-                        post(payload) {
-                            return self.fetch("/api/v2/nm-report/detail", { method: 'post', payload });
-                        }
-                    }
-                }
-            }
-        };
     }
 }
-exports.SellerAnalytics = SellerAnalytics;
+exports.Analytics = Analytics;
 class Advert extends API_Section {
+    campaignsLists() {
+        return this.fetch("/adv/v1/promotion/count");
+    }
+    campaignsStatistics(payload) {
+        return this.fetch("/adv/v2/fullstats", { method: 'post', payload });
+    }
     constructor(access) {
         super(access, "https://advert-api.wildberries.ru");
-        const self = this;
-        this.adv = {
-            v1: {
-                promotion: {
-                    count: {
-                        get() {
-                            return self.fetch("/adv/v1/promotion/count", { method: 'get' });
-                        }
-                    }
-                }
-            },
-            v2: {
-                fullstats: {
-                    post(payload) {
-                        if (types_1.Wildberries.Advert.Adv.V2.Fullstats.isWithDate(payload)) {
-                            return self.fetch("/adv/v2/fullstats", { method: 'post', payload: payload });
-                        }
-                        else {
-                            return self.fetch("/adv/v2/fullstats", { method: 'post', payload: payload });
-                        }
-                    }
-                }
-            }
-        };
     }
 }
 exports.Advert = Advert;
+class Wildberries {
+    constructor(access) {
+        this.statistics = new Statistics(access);
+        this.analytics = new Analytics(access);
+        this.advert = new Advert(access);
+    }
+}
+exports.Wildberries = Wildberries;

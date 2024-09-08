@@ -1,59 +1,28 @@
-import { Wildberries } from "./types";
+import { Sections } from "./types";
 declare class API_Section {
     fetch: (url: string, options?: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions) => any;
     constructor(access: string, baseUrl: string);
 }
-export declare class Statistics extends API_Section implements Wildberries.Statistics.Instance {
-    api: {
-        v1: {
-            supplier: {
-                stocks: {
-                    get: typeof Wildberries.Statistics.Api.V1.Supplier.Stocks.get;
-                    utils?: any;
-                };
-                orders: {
-                    get: typeof Wildberries.Statistics.Api.V1.Supplier.Orders.get;
-                    utils?: any;
-                };
-                sales: {
-                    get: typeof Wildberries.Statistics.Api.V1.Supplier.Sales.get;
-                    utils?: any;
-                };
-            };
-        };
-    };
+export declare class Statistics extends API_Section implements Sections.Statistics.Methods {
+    warehouse(query: Sections.Statistics.Warehouse.Query): Sections.Statistics.Warehouse.Response;
+    orders(query: Sections.Statistics.Orders.Query): Sections.Statistics.Orders.Response;
+    sales(query: Sections.Statistics.Sales.Query): Sections.Statistics.Sales.Response;
     constructor(access: string);
 }
-export declare class SellerAnalytics extends API_Section implements Wildberries.SellerAnalytics.Instance {
-    api: {
-        v2: {
-            nmReport: {
-                detail: {
-                    post: typeof Wildberries.SellerAnalytics.Api.V2.NmReport.Detail.post;
-                    utils?: any;
-                };
-            };
-        };
-    };
+export declare class Analytics extends API_Section implements Sections.Analytics.Methods {
+    pcStatistics(payload: Sections.Analytics.PCStatistics.RequestBody): Sections.Analytics.PCStatistics.Response;
     constructor(access: string);
 }
-export declare class Advert extends API_Section implements Wildberries.Advert.Instance {
-    adv: {
-        v1: {
-            promotion: {
-                count: {
-                    get: typeof Wildberries.Advert.Adv.V1.Promotion.Count.get;
-                    utils?: any;
-                };
-            };
-        };
-        v2: {
-            fullstats: {
-                post: typeof Wildberries.Advert.Adv.V2.Fullstats.post;
-                utils?: any;
-            };
-        };
-    };
+export declare class Advert extends API_Section implements Sections.Advert.Methods {
+    campaignsLists(): Sections.Advert.CampaignsLists.Response;
+    campaignsStatistics(payload: Sections.Advert.CampaignsStatistics.RequestBody.WithDate): Sections.Advert.CampaignsStatistics.Response.WithDate;
+    campaignsStatistics(payload: Sections.Advert.CampaignsStatistics.RequestBody.WithInterval): Sections.Advert.CampaignsStatistics.Response.WithInterval;
+    constructor(access: string);
+}
+export declare class Wildberries {
+    statistics: Statistics;
+    analytics: Analytics;
+    advert: Advert;
     constructor(access: string);
 }
 export {};
