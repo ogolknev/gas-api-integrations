@@ -1,4 +1,5 @@
 import typescript from "@rollup/plugin-typescript";
+import cleanup from "rollup-plugin-cleanup";
 
 import { babel } from "@rollup/plugin-babel";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
@@ -23,6 +24,13 @@ export default {
     output: {
         dir: "build",
         format: "esm",
+        banner: 
+`
+/************************************************************************
+ 
+************************************************************************/
+`,
+
     },
     plugins: [
         typescript(),
@@ -31,5 +39,6 @@ export default {
             extensions,
         }),
         babel({ extensions, babelHelpers: "runtime" }),
+        cleanup()
     ],
 };

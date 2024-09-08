@@ -89,7 +89,7 @@ declare namespace Wildberries {
     namespace Supplies { }
     namespace Marketplace { }
     namespace Statistics {
-        class Instance {
+        interface Instance {
             api: {
                 v1: {
                     supplier: {
@@ -214,7 +214,7 @@ declare namespace Wildberries {
         }
     }
     namespace SellerAnalytics {
-        class Instance {
+        interface Instance {
             api: {
                 v2: {
                     nmReport: {
@@ -338,7 +338,7 @@ declare namespace Wildberries {
         }
     }
     namespace Advert {
-        class Instance {
+        interface Instance {
             adv: {
                 v1: {
                     promotion: {
