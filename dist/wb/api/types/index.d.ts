@@ -4,8 +4,12 @@ export namespace Wildberries {
             content: {
                 v2: {
                     cards: {
-                        upload: typeof Content.V2.Cards.Upload.method,
-                        update: typeof Content.V2.Cards.Update.method
+                        upload: {
+                            post: typeof Content.V2.Cards.Upload.post,
+                        } 
+                        update: {
+                            post: typeof Content.V2.Cards.Update.post
+                        } 
                     }
                 }
             }
@@ -15,15 +19,52 @@ export namespace Wildberries {
                 namespace Cards {
                     namespace Upload {
 
-                        function method(payload: RequestBody): Response
+                        function post(payload: RequestBody): Post.Response
 
-                        interface RequestBody {
-                            subjectID: number;
-                            variants: {
+                        namespace Post {
+                            interface RequestBody {
+                                subjectID: number;
+                                variants: {
+                                    vendorCode: string;
+                                    title: string;
+                                    description: string;
+                                    brand: string;
+                                    dimensions: {
+                                        length: number;
+                                        width: number;
+                                        height: number;
+                                    };
+                                    characteristics: {
+                                        id: number;
+                                        value: string[] | number;
+                                    }[];
+                                    sizes: {
+                                        techSize: string;
+                                        wbSize: string;
+                                        price: number;
+                                        skus: string[];
+                                    }[];
+                                }[];
+                            }
+                            interface Response {
+                                data: null;
+                                error: boolean;
+                                errorText: string;
+                                additionalErrors: {};
+                            }
+                        }
+                    }
+                    namespace Update {
+
+                        function post(payload: RequestBody): Post.Response
+
+                        namespace Post {
+                            interface RequestBody {
+                                nmID: number;
                                 vendorCode: string;
-                                title: string;
-                                description: string;
-                                brand: string;
+                                brand?: string;
+                                title?: string;
+                                description?: string;
                                 dimensions: {
                                     length: number;
                                     width: number;
@@ -31,54 +72,21 @@ export namespace Wildberries {
                                 };
                                 characteristics: {
                                     id: number;
-                                    value: string[] | number;
+                                    value: string[];
                                 }[];
                                 sizes: {
+                                    chrtID: number;
                                     techSize: string;
                                     wbSize: string;
-                                    price: number;
                                     skus: string[];
                                 }[];
-                            }[];
-                        }
-                        interface Response {
-                            data: null;
-                            error: boolean;
-                            errorText: string;
-                            additionalErrors: {};
-                        }
-                    }
-                    namespace Update {
-
-                        function method(payload: RequestBody): Response
-
-                        interface RequestBody {
-                            nmID: number;
-                            vendorCode: string;
-                            brand?: string;
-                            title?: string;
-                            description?: string;
-                            dimensions: {
-                                length: number;
-                                width: number;
-                                height: number;
-                            };
-                            characteristics: {
-                                id: number;
-                                value: string[];
-                            }[];
-                            sizes: {
-                                chrtID: number;
-                                techSize: string;
-                                wbSize: string;
-                                skus: string[];
-                            }[];
-                        }
-                        interface Response {
-                            data: null;
-                            error: boolean;
-                            errorText: string;
-                            additionalErrors: {};
+                            }
+                            interface Response {
+                                data: null;
+                                error: boolean;
+                                errorText: string;
+                                additionalErrors: {};
+                            }
                         }
                     }
                 }
@@ -93,9 +101,15 @@ export namespace Wildberries {
             api: {
                 v1: {
                     supplier: {
-                        stocks: typeof Api.V1.Supplier.Stocks.method,
-                        orders: typeof Api.V1.Supplier.Orders.method,
-                        sales: typeof Api.V1.Supplier.Sales.method
+                        stocks: {
+                            get: typeof Api.V1.Supplier.Stocks.get,
+                        }
+                        orders: {
+                            get: typeof Api.V1.Supplier.Orders.get,
+                        }
+                        sales: {
+                            get: typeof Api.V1.Supplier.Sales.get
+                        }
                     }
                 }
             }
@@ -105,109 +119,114 @@ export namespace Wildberries {
                 namespace Supplier {
                     namespace Stocks {
 
-                        function method(query: Query): Response
+                        function get(query: Query): Get.Response
 
-                        interface Query {
-                            dateFrom: string
+                        namespace Get {
+                            interface Query {
+                                dateFrom: string
+                            }
+                            type Response = Array<{
+                                lastChangeDate: string
+                                warehouseName: string
+                                supplierArticle: string
+                                nmId: number
+                                barcode: string
+                                quantity: number
+                                inWayToClient: number
+                                inWayFromClient: number
+                                quantityFull: number
+                                category: string
+                                subject: string
+                                brand: string
+                                techSize: string
+                                Price: number
+                                Discount: number
+                                isSupply: boolean
+                                isRealization: boolean
+                                SCCode: string
+                            }>
                         }
-                        type Response = Array<{
-                            lastChangeDate: string
-                            warehouseName: string
-                            supplierArticle: string
-                            nmId: number
-                            barcode: string
-                            quantity: number
-                            inWayToClient: number
-                            inWayFromClient: number
-                            quantityFull: number
-                            category: string
-                            subject: string
-                            brand: string
-                            techSize: string
-                            Price: number
-                            Discount: number
-                            isSupply: boolean
-                            isRealization: boolean
-                            SCCode: string
-                        }>
                     }
                     namespace Orders {
 
-                        function method(query: Query): Response
+                        function get(query: Query): Get.Response
 
-                        interface Query {
-                            dateFrom: string,
-                            flag?: 0 | 1
+                        namespace Get {
+                            interface Query {
+                                dateFrom: string,
+                                flag?: 0 | 1
+                            }
+                            type Response = Array<{
+                                date: string
+                                lastChangeDate: string
+                                warehouseName: string
+                                countryName: string
+                                oblastOkrugName: string
+                                regionName: string
+                                supplierArticle: string
+                                nmId: number
+                                barcode: string
+                                category: string
+                                subject: string
+                                brand: string
+                                techSize: string
+                                incomeID: number
+                                isSupply: boolean
+                                isRealization: boolean
+                                totalPrice: number
+                                discountPercent: number
+                                spp: number
+                                finishedPrice: number
+                                priceWithDisc: number
+                                isCancel: boolean
+                                cancelDate: string
+                                orderType: string
+                                sticker: string
+                                gNumber: string
+                                srid: string
+                            }>
                         }
-                        type Response = Array<{
-                            date: string
-                            lastChangeDate: string
-                            warehouseName: string
-                            countryName: string
-                            oblastOkrugName: string
-                            regionName: string
-                            supplierArticle: string
-                            nmId: number
-                            barcode: string
-                            category: string
-                            subject: string
-                            brand: string
-                            techSize: string
-                            incomeID: number
-                            isSupply: boolean
-                            isRealization: boolean
-                            totalPrice: number
-                            discountPercent: number
-                            spp: number
-                            finishedPrice: number
-                            priceWithDisc: number
-                            isCancel: boolean
-                            cancelDate: string
-                            orderType: string
-                            sticker: string
-                            gNumber: string
-                            srid: string
-                        }>
                     }
                     namespace Sales {
 
-                        function method(query: Query): Response
+                        function get(query: Query): Get.Response
 
-                        interface Query {
-                            dateFrom: string,
-                            flag?: 0 | 1
+                        namespace Get {
+                            interface Query {
+                                dateFrom: string,
+                                flag?: 0 | 1
+                            }
+                            type Response = Array<{
+                                date: string
+                                lastChangeDate: string
+                                warehouseName: string
+                                countryName: string
+                                oblastOkrugName: string
+                                regionName: string
+                                supplierArticle: string
+                                nmId: number
+                                barcode: string
+                                category: string
+                                subject: string
+                                brand: string
+                                techSize: string
+                                incomeID: number
+                                isSupply: boolean
+                                isRealization: boolean
+                                totalPrice: number
+                                discountPercent: number
+                                spp: number
+                                paymentSaleAmount: number
+                                forPay: number
+                                finishedPrice: number
+                                priceWithDisc: number
+                                saleID: string
+                                orderType: string
+                                sticker: string
+                                gNumber: string
+                                srid: string
+                            }>
                         }
-                        type Response = Array<{
-                            date: string
-                            lastChangeDate: string
-                            warehouseName: string
-                            countryName: string
-                            oblastOkrugName: string
-                            regionName: string
-                            supplierArticle: string
-                            nmId: number
-                            barcode: string
-                            category: string
-                            subject: string
-                            brand: string
-                            techSize: string
-                            incomeID: number
-                            isSupply: boolean
-                            isRealization: boolean
-                            totalPrice: number
-                            discountPercent: number
-                            spp: number
-                            paymentSaleAmount: number
-                            forPay: number
-                            finishedPrice: number
-                            priceWithDisc: number
-                            saleID: string
-                            orderType: string
-                            sticker: string
-                            gNumber: string
-                            srid: string
-                        }>
-
                     }
                 }
             }
@@ -218,7 +237,9 @@ export namespace Wildberries {
             api: {
                 v2: {
                     nmReport: {
-                        detail: typeof Api.V2.NmReport.Detail.method
+                        detail: {
+                            post: typeof Api.V2.NmReport.Detail.post
+                        }
                     }
                 }
             }
@@ -228,109 +249,111 @@ export namespace Wildberries {
                 namespace NmReport {
                     namespace Detail {
 
-                        function method(payload: RequestBody): Response
+                        function post(payload: Post.RequestBody): Post.Response
 
-                        interface RequestBody {
-                            brandNames?: string[];
-                            objectIDs?: number[];
-                            tagIDs?: number[];
-                            nmIDs?: number[];
-                            timezone?: string;
-                            period: {
-                                begin: string;
-                                end: string;
-                            };
-                            orderBy?: {
-                                field: string;
-                                mode: string;
-                            };
-                            page: number;
-                        }
-                        interface Response {
-                            data: {
+                        namespace Post {
+                            interface RequestBody {
+                                brandNames?: string[];
+                                objectIDs?: number[];
+                                tagIDs?: number[];
+                                nmIDs?: number[];
+                                timezone?: string;
+                                period: {
+                                    begin: string;
+                                    end: string;
+                                };
+                                orderBy?: {
+                                    field: string;
+                                    mode: string;
+                                };
                                 page: number;
-                                isNextPage: boolean;
-                                cards: {
-                                    nmID: number;
-                                    vendorCode: string;
-                                    brandName: string;
-                                    tags: {
-                                        id: number;
-                                        name: string;
+                            }
+                            interface Response {
+                                data: {
+                                    page: number;
+                                    isNextPage: boolean;
+                                    cards: {
+                                        nmID: number;
+                                        vendorCode: string;
+                                        brandName: string;
+                                        tags: {
+                                            id: number;
+                                            name: string;
+                                        }[];
+                                        object: {
+                                            id: number;
+                                            name: string;
+                                        };
+                                        statistics: {
+                                            selectedPeriod: {
+                                                begin: string;
+                                                end: string;
+                                                openCardCount: number;
+                                                addToCartCount: number;
+                                                ordersCount: number;
+                                                ordersSumRub: number;
+                                                buyoutsCount: number;
+                                                buyoutsSumRub: number;
+                                                cancelCount: number;
+                                                cancelSumRub: number;
+                                                avgPriceRub: number;
+                                                avgOrdersCountPerDay: number;
+                                                conversions: {
+                                                    addToCartPercent: number;
+                                                    cartToOrderPercent: number;
+                                                    buyoutsPercent: number;
+                                                };
+                                            };
+                                            previousPeriod: {
+                                                begin: string;
+                                                end: string;
+                                                openCardCount: number;
+                                                addToCartCount: number;
+                                                ordersCount: number;
+                                                ordersSumRub: number;
+                                                buyoutsCount: number;
+                                                buyoutsSumRub: number;
+                                                cancelCount: number;
+                                                cancelSumRub: number;
+                                                avgPriceRub: number;
+                                                avgOrdersCountPerDay: number;
+                                                conversions: {
+                                                    addToCartPercent: number;
+                                                    cartToOrderPercent: number;
+                                                    buyoutsPercent: number;
+                                                };
+                                            };
+                                            periodComparison: {
+                                                openCardDynamics: number;
+                                                addToCartDynamics: number;
+                                                ordersCountDynamics: number;
+                                                ordersSumRubDynamics: number;
+                                                buyoutsCountDynamics: number;
+                                                buyoutsSumRubDynamics: number;
+                                                cancelCountDynamics: number;
+                                                cancelSumRubDynamics: number;
+                                                avgOrdersCountPerDayDynamics: number;
+                                                avgPriceRubDynamics: number;
+                                                conversions: {
+                                                    addToCartPercent: number;
+                                                    cartToOrderPercent: number;
+                                                    buyoutsPercent: number;
+                                                };
+                                            };
+                                        };
+                                        stocks: {
+                                            stocksMp: number;
+                                            stocksWb: number;
+                                        };
                                     }[];
-                                    object: {
-                                        id: number;
-                                        name: string;
-                                    };
-                                    statistics: {
-                                        selectedPeriod: {
-                                            begin: string;
-                                            end: string;
-                                            openCardCount: number;
-                                            addToCartCount: number;
-                                            ordersCount: number;
-                                            ordersSumRub: number;
-                                            buyoutsCount: number;
-                                            buyoutsSumRub: number;
-                                            cancelCount: number;
-                                            cancelSumRub: number;
-                                            avgPriceRub: number;
-                                            avgOrdersCountPerDay: number;
-                                            conversions: {
-                                                addToCartPercent: number;
-                                                cartToOrderPercent: number;
-                                                buyoutsPercent: number;
-                                            };
-                                        };
-                                        previousPeriod: {
-                                            begin: string;
-                                            end: string;
-                                            openCardCount: number;
-                                            addToCartCount: number;
-                                            ordersCount: number;
-                                            ordersSumRub: number;
-                                            buyoutsCount: number;
-                                            buyoutsSumRub: number;
-                                            cancelCount: number;
-                                            cancelSumRub: number;
-                                            avgPriceRub: number;
-                                            avgOrdersCountPerDay: number;
-                                            conversions: {
-                                                addToCartPercent: number;
-                                                cartToOrderPercent: number;
-                                                buyoutsPercent: number;
-                                            };
-                                        };
-                                        periodComparison: {
-                                            openCardDynamics: number;
-                                            addToCartDynamics: number;
-                                            ordersCountDynamics: number;
-                                            ordersSumRubDynamics: number;
-                                            buyoutsCountDynamics: number;
-                                            buyoutsSumRubDynamics: number;
-                                            cancelCountDynamics: number;
-                                            cancelSumRubDynamics: number;
-                                            avgOrdersCountPerDayDynamics: number;
-                                            avgPriceRubDynamics: number;
-                                            conversions: {
-                                                addToCartPercent: number;
-                                                cartToOrderPercent: number;
-                                                buyoutsPercent: number;
-                                            };
-                                        };
-                                    };
-                                    stocks: {
-                                        stocksMp: number;
-                                        stocksWb: number;
-                                    };
+                                };
+                                error: boolean;
+                                errorText: string;
+                                additionalErrors: {
+                                    field: string;
+                                    description: string;
                                 }[];
-                            };
-                            error: boolean;
-                            errorText: string;
-                            additionalErrors: {
-                                field: string;
-                                description: string;
-                            }[];
+                            }
                         }
                     }
                 }
@@ -342,11 +365,15 @@ export namespace Wildberries {
             adv: {
                 v1: {
                     promotion: {
-                        count: typeof Adv.V1.Promotion.Count.method
+                        count: {
+                            get: typeof Adv.V1.Promotion.Count.get
+                        }
                     }
                 },
                 v2: {
-                    fullstats: typeof Adv.V2.Fullstats.method
+                    fullstats: {
+                        post: typeof Adv.V2.Fullstats.post
+                    }
                 }
             }
         }
@@ -355,19 +382,21 @@ export namespace Wildberries {
                 namespace Promotion {
                     namespace Count {
 
-                        function method(): Adv.V1.Promotion.Count.Response
+                        function get(): Adv.V1.Promotion.Count.Get.Response
 
-                        interface Response {
-                            adverts: {
-                                type: number;
-                                status: number;
-                                count: number;
-                                advert_list: {
-                                    advertId: number;
-                                    changeTime: string;
+                        namespace Get {
+                            interface Response {
+                                adverts: {
+                                    type: number;
+                                    status: number;
+                                    count: number;
+                                    advert_list: {
+                                        advertId: number;
+                                        changeTime: string;
+                                    }[];
                                 }[];
-                            }[];
-                            all: number;
+                                all: number;
+                            }
                         }
                     }
                 }
@@ -375,49 +404,38 @@ export namespace Wildberries {
             namespace V2 {
                 namespace Fullstats {
 
-                    function method(payload: Adv.V2.Fullstats.RequestBody.WithDate): Adv.V2.Fullstats.Response.WithDate
-                    function method(payload: Adv.V2.Fullstats.RequestBody.WithInterval): Adv.V2.Fullstats.Response.WithInterval
+                    function post(payload: Adv.V2.Fullstats.Post.RequestBody.WithDate): Adv.V2.Fullstats.Post.Response.WithDate
+                    function post(payload: Adv.V2.Fullstats.Post.RequestBody.WithInterval): Adv.V2.Fullstats.Post.Response.WithInterval
 
-                    namespace RequestBody {
-                        type WithDate = WithDateElement[]
-                        type WithInterval = WithIntervalElement[]
-                        interface WithDateElement {
-                            id: number;
-                            dates?: string[];
-                        }
-                        interface WithIntervalElement {
-                            id: number;
-                            interval: {
-                                begin: string;
-                                end: string;
-                            };
-                        }
-                    }
-                    namespace Response {
-                        type WithDate = WithDateElement[]
-                        type WithInterval = WithIntervalElement[]
-                        interface WithDateElement extends Common {
-                            dates: string[];
-                        }
-                        interface WithIntervalElement extends Common {
-                            interval: {
-                                begin: string,
-                                end: string
+                    namespace Post {
+                        namespace RequestBody {
+                            type WithDate = WithDateElement[]
+                            type WithInterval = WithIntervalElement[]
+                            interface WithDateElement {
+                                id: number;
+                                dates?: string[];
+                            }
+                            interface WithIntervalElement {
+                                id: number;
+                                interval: {
+                                    begin: string;
+                                    end: string;
+                                };
                             }
                         }
-                        interface CommonElement {
-                            views: number;
-                            clicks: number;
-                            ctr: number;
-                            cpc: number;
-                            sum: number;
-                            atbs: number;
-                            orders: number;
-                            cr: number;
-                            shks: number;
-                            sum_price: number;
-                            days: {
-                                date: string;
+                        namespace Response {
+                            type WithDate = WithDateElement[]
+                            type WithInterval = WithIntervalElement[]
+                            interface WithDateElement extends Common {
+                                dates: string[];
+                            }
+                            interface WithIntervalElement extends Common {
+                                interval: {
+                                    begin: string,
+                                    end: string
+                                }
+                            }
+                            interface CommonElement {
                                 views: number;
                                 clicks: number;
                                 ctr: number;
@@ -428,7 +446,8 @@ export namespace Wildberries {
                                 cr: number;
                                 shks: number;
                                 sum_price: number;
-                                apps: {
+                                days: {
+                                    date: string;
                                     views: number;
                                     clicks: number;
                                     ctr: number;
@@ -439,7 +458,7 @@ export namespace Wildberries {
                                     cr: number;
                                     shks: number;
                                     sum_price: number;
-                                    nm: {
+                                    apps: {
                                         views: number;
                                         clicks: number;
                                         ctr: number;
@@ -450,18 +469,30 @@ export namespace Wildberries {
                                         cr: number;
                                         shks: number;
                                         sum_price: number;
-                                        name: string;
-                                        nmId: number;
+                                        nm: {
+                                            views: number;
+                                            clicks: number;
+                                            ctr: number;
+                                            cpc: number;
+                                            sum: number;
+                                            atbs: number;
+                                            orders: number;
+                                            cr: number;
+                                            shks: number;
+                                            sum_price: number;
+                                            name: string;
+                                            nmId: number;
+                                        }[];
+                                        appType: number;
                                     }[];
-                                    appType: number;
                                 }[];
-                            }[];
-                            boosterStats: {
-                                date: string;
-                                nm: number;
-                                avg_position: number;
-                            }[];
-                            advertId: number;
+                                boosterStats: {
+                                    date: string;
+                                    nm: number;
+                                    avg_position: number;
+                                }[];
+                                advertId: number;
+                            }
                         }
                     }
                 }

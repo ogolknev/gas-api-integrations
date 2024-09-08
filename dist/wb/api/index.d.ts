@@ -7,9 +7,15 @@ export declare class Statistics extends API_Section implements Wildberries.Stati
     api: {
         v1: {
             supplier: {
-                stocks: typeof Wildberries.Statistics.Api.V1.Supplier.Stocks.method;
-                orders: typeof Wildberries.Statistics.Api.V1.Supplier.Orders.method;
-                sales: typeof Wildberries.Statistics.Api.V1.Supplier.Sales.method;
+                stocks: {
+                    get: typeof Wildberries.Statistics.Api.V1.Supplier.Stocks.get;
+                };
+                orders: {
+                    get: typeof Wildberries.Statistics.Api.V1.Supplier.Orders.get;
+                };
+                sales: {
+                    get: typeof Wildberries.Statistics.Api.V1.Supplier.Sales.get;
+                };
             };
         };
     };
@@ -19,7 +25,9 @@ export declare class SellerAnalytics extends API_Section implements Wildberries.
     api: {
         v2: {
             nmReport: {
-                detail: typeof Wildberries.SellerAnalytics.Api.V2.NmReport.Detail.method;
+                detail: {
+                    post: typeof Wildberries.SellerAnalytics.Api.V2.NmReport.Detail.post;
+                };
             };
         };
     };
@@ -29,11 +37,15 @@ export declare class Advert extends API_Section implements Wildberries.Advert.In
     adv: {
         v1: {
             promotion: {
-                count: typeof Wildberries.Advert.Adv.V1.Promotion.Count.method;
+                count: {
+                    get: typeof Wildberries.Advert.Adv.V1.Promotion.Count.get;
+                };
             };
         };
         v2: {
-            fullstats: typeof Wildberries.Advert.Adv.V2.Fullstats.method;
+            fullstats: {
+                post: typeof Wildberries.Advert.Adv.V2.Fullstats.post;
+            };
         };
     };
     constructor(access: string);

@@ -20,14 +20,20 @@ class Statistics extends API_Section {
         this.api = {
             v1: {
                 supplier: {
-                    stocks(query) {
-                        return self.fetch((0, utils_1.setQuery)("/api/v1/supplier/stocks", query), { method: 'get' });
+                    stocks: {
+                        get(query) {
+                            return self.fetch((0, utils_1.setQuery)("/api/v1/supplier/stocks", query), { method: 'get' });
+                        },
                     },
-                    orders(query) {
-                        return self.fetch((0, utils_1.setQuery)("/api/v1/supplier/orders", query), { method: 'get' });
+                    orders: {
+                        get(query) {
+                            return self.fetch((0, utils_1.setQuery)("/api/v1/supplier/orders", query), { method: 'get' });
+                        }
                     },
-                    sales(query) {
-                        return self.fetch((0, utils_1.setQuery)("/api/v1/supplier/sales", query), { method: 'get' });
+                    sales: {
+                        get(query) {
+                            return self.fetch((0, utils_1.setQuery)("/api/v1/supplier/sales", query), { method: 'get' });
+                        }
                     }
                 }
             }
@@ -42,8 +48,10 @@ class SellerAnalytics extends API_Section {
         this.api = {
             v2: {
                 nmReport: {
-                    detail(payload) {
-                        return self.fetch("/api/v2/nm-report/detail", { method: 'post', payload });
+                    detail: {
+                        post(payload) {
+                            return self.fetch("/api/v2/nm-report/detail", { method: 'post', payload });
+                        }
                     }
                 }
             }
@@ -58,14 +66,18 @@ class Advert extends API_Section {
         this.adv = {
             v1: {
                 promotion: {
-                    count() {
-                        return self.fetch("/adv/v1/promotion/count", { method: 'get' });
+                    count: {
+                        get() {
+                            return self.fetch("/adv/v1/promotion/count", { method: 'get' });
+                        }
                     }
                 }
             },
             v2: {
-                fullstats(payload) {
-                    return self.fetch("/adv/v2/fullstats", { method: 'post', payload });
+                fullstats: {
+                    post(payload) {
+                        return self.fetch("/adv/v2/fullstats", { method: 'post', payload });
+                    }
                 }
             }
         };
