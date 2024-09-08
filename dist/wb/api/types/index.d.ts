@@ -379,11 +379,13 @@ export namespace Wildberries {
                     function method(payload: Adv.V2.Fullstats.RequestBody.WithInterval): Adv.V2.Fullstats.Response.WithInterval
 
                     namespace RequestBody {
-                        interface WithDate {
+                        type WithDate = WithDateElement[]
+                        type WithInterval = WithIntervalElement[]
+                        interface WithDateElement {
                             id: number;
                             dates?: string[];
                         }
-                        interface WithInterval {
+                        interface WithIntervalElement {
                             id: number;
                             interval: {
                                 begin: string;
