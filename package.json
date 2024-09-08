@@ -1,22 +1,29 @@
 {
+  "name": "gas-api-integrations",
+  "version": "1.0.0",
+  "description": "Module to simplify the integration of the marketplace API into Google Apps Script.",
+  "main": "dist/index.js",
   "scripts": {
-    "build": "rollup --config",
-    "push": "rollup -c && clasp push"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ogolknev/gas-api-integrations.git"
+  },
+  "keywords": [
+    "clasp",
+    "ts",
+    "gs",
+    "js"
+  ],
+  "author": "notdead",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ogolknev/gas-api-integrations/issues"
+  },
+  "homepage": "https://github.com/ogolknev/gas-api-integrations#readme",
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "^7.25.4",
-    "@babel/preset-env": "^7.25.4",
-    "@babel/preset-typescript": "^7.24.7",
-    "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-typescript": "^11.1.6",
     "@types/google-apps-script": "^1.0.83",
-    "rollup": "^4.21.2",
-    "rollup-plugin-cleanup": "^3.2.1",
-    "tslib": "^2.7.0",
     "typescript": "^5.5.4"
-  },
-  "dependencies": {
-    "@babel/runtime": "^7.25.6"
   }
 }
