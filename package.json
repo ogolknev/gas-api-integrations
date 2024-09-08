@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "build": "rollup --config"
+    "build": "rollup --config",
+    "push": "rollup -c && clasp push"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.25.4",
