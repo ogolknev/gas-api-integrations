@@ -404,6 +404,12 @@ export namespace Wildberries {
             namespace V2 {
                 namespace Fullstats {
 
+                    function isWithDate(
+                        payload: Adv.V2.Fullstats.Post.RequestBody.WithDate | Adv.V2.Fullstats.Post.RequestBody.WithInterval
+                    ): payload is Adv.V2.Fullstats.Post.RequestBody.WithDate {
+                        return (payload as Adv.V2.Fullstats.Post.RequestBody.WithInterval)[0].interval === undefined
+                    }
+
                     function post(payload: Adv.V2.Fullstats.Post.RequestBody.WithDate): Adv.V2.Fullstats.Post.Response.WithDate
                     function post(payload: Adv.V2.Fullstats.Post.RequestBody.WithInterval): Adv.V2.Fullstats.Post.Response.WithInterval
 

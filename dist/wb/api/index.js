@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Advert = exports.SellerAnalytics = exports.Statistics = void 0;
 const utils_1 = require("../../utils");
+const types_1 = require("./types");
 class API_Section {
     constructor(access, baseUrl) {
         this.fetch = (0, utils_1.configuredFetch)(baseUrl, {
@@ -76,7 +77,12 @@ class Advert extends API_Section {
             v2: {
                 fullstats: {
                     post(payload) {
-                        return self.fetch("/adv/v2/fullstats", { method: 'post', payload });
+                        if (types_1.Wildberries.Advert.Adv.V2.Fullstats.isWithDate(payload)) {
+                            return self.fetch("/adv/v2/fullstats", { method: 'post', payload: payload });
+                        }
+                        else {
+                            return self.fetch("/adv/v2/fullstats", { method: 'post', payload: payload });
+                        }
                     }
                 }
             }
