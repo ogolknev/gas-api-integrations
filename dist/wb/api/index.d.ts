@@ -1,3 +1,4 @@
+import { Wildberries } from "./types";
 declare class API_Section {
     fetch: (url: string, options?: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions) => any;
     constructor(access: string, baseUrl: string);

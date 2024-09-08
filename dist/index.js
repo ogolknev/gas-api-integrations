@@ -1,4 +1,8 @@
 "use strict";
+/**
+ * TODO:
+ * - add README
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Wildberries = void 0;
 const api_1 = require("./wb/api");

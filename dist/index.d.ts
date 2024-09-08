@@ -1,3 +1,7 @@
+/**
+ * TODO:
+ * - add README
+ */
 import { Statistics, SellerAnalytics, Advert } from "./wb/api";
 export declare class Wildberries {
     statistics: Statistics;
