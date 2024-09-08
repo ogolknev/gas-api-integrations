@@ -27,6 +27,6 @@ const wb = new Wildberries('your_jwt');
 Use methods of API (e.g. "https://seller-analytics-api.wildberries.ru/api/v2/nm-report/detail"):
 
 ```TypeScript
-const responce = wb.analytics.api.v2.nmReport.detail(payload)
+const responce = wb.analytics.api.v2.nmReport.detail.post(payload)
 ```
 
