@@ -236,15 +236,15 @@ export namespace Sections {
         }
         namespace PCStatisticsGroupedHistory {
             type RequestBody = {
-                objectIDs: Array<number>
-                brandNames: Array<string>
-                tagIDs: Array<number>
+                objectIDs?: Array<number>
+                brandNames?: Array<string>
+                tagIDs?: Array<number>
                 period: {
                     begin: string
                     end: string
                 }
-                timezone: string
-                aggregationLevel: string
+                timezone?: string
+                aggregationLevel?: string
             }
             type Response = {
                 data: Array<{
