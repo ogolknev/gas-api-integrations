@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Advert = exports.Analytics = exports.Statistics = void 0;
+exports.Advert = exports.Analytics = exports.Statistics = exports.DiscountsPrices = void 0;
 const utils_1 = require("../../utils");
 class API_Section {
     constructor(access, baseUrl) {
@@ -13,6 +13,15 @@ class API_Section {
         });
     }
 }
+class DiscountsPrices extends API_Section {
+    getProducts(query) {
+        return this.fetch((0, utils_1.setQuery)("/api/v2/list/goods/filter", query), { method: 'get' });
+    }
+    constructor(access) {
+        super(access, "https://discounts-prices-api.wildberries.ru");
+    }
+}
+exports.DiscountsPrices = DiscountsPrices;
 class Statistics extends API_Section {
     warehouse(query) {
         return this.fetch((0, utils_1.setQuery)("/api/v1/supplier/stocks", query), { method: 'get' });

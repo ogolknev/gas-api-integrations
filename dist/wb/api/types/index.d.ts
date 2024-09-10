@@ -1,6 +1,36 @@
 export namespace Sections {
     namespace Content { }
-    namespace DiscountsPrices { }
+    namespace DiscountsPrices { 
+
+        interface Methods {
+            getProducts(query: GetProducts.Query): GetProducts.Response
+        }
+
+        namespace GetProducts {
+            interface Query {
+                limit: number
+                offset?: number
+                filterNmID?: number
+            }
+            type Response = {
+                data: {
+                    listGoods: Array<{
+                        nmID: number
+                        vendorCode: string
+                        sizes: Array<{
+                            sizeID: number
+                            price: number
+                            discountedPrice: number
+                            techSizeName: number
+                        }>
+                        currencyIsoCode4217: string
+                        discount: number
+                        editableSizePrice: boolean
+                    }>
+                }
+            }
+        }
+    }
     namespace Supplies { }
     namespace Marketplace {
         namespace Orders { }

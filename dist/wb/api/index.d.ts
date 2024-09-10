@@ -3,6 +3,10 @@ declare class API_Section {
     fetch: (url: string, options?: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions) => any;
     constructor(access: string, baseUrl: string);
 }
+export declare class DiscountsPrices extends API_Section implements Sections.DiscountsPrices.Methods {
+    getProducts(query: Sections.DiscountsPrices.GetProducts.Query): Sections.DiscountsPrices.GetProducts.Response;
+    constructor(access: string);
+}
 export declare class Statistics extends API_Section implements Sections.Statistics.Methods {
     warehouse(query: Sections.Statistics.Warehouse.Query): Sections.Statistics.Warehouse.Response;
     orders(query: Sections.Statistics.Orders.Query): Sections.Statistics.Orders.Response;
