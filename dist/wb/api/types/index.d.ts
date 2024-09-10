@@ -121,6 +121,7 @@ export namespace Sections {
 
         interface Methods {
             pcStatistics(payload: PCStatistics.RequestBody): PCStatistics.Response
+            pcStatisticsGroupedHistory(payload: PCStatisticsGroupedHistory.RequestBody): PCStatisticsGroupedHistory.Response
         }
 
         namespace PCStatistics {
@@ -234,7 +235,48 @@ export namespace Sections {
 
         }
         namespace PCStatisticsGroupedHistory {
-
+            type RequestBody = {
+                objectIDs: Array<number>
+                brandNames: Array<string>
+                tagIDs: Array<number>
+                period: {
+                    begin: string
+                    end: string
+                }
+                timezone: string
+                aggregationLevel: string
+            }
+            type Response = {
+                data: Array<{
+                    object: {
+                        id: number
+                        name: string
+                    }
+                    brandName: string
+                    tag: {
+                        id: number
+                        name: string
+                    }
+                    history: Array<{
+                        dt: string
+                        openCardCount: number
+                        addToCartCount: number
+                        ordersCount: number
+                        ordersSumRub: number
+                        buyoutsCount: number
+                        buyoutsSumRub: number
+                        buyoutPercent: number
+                        addToCartConversion: number
+                        cartToOrderConversion: number
+                    }>
+                }>
+                error: boolean
+                errorText: string
+                additionalErrors: Array<{
+                    field: string
+                    description: string
+                }>
+            }
         }
     }
     namespace Advert {

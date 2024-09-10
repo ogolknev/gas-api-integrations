@@ -32,6 +32,9 @@ class Analytics extends API_Section {
     pcStatistics(payload) {
         return this.fetch("/api/v2/nm-report/detail", { method: 'post', payload });
     }
+    pcStatisticsGroupedHistory(payload) {
+        return this.fetch("/api/v2/nm-report/grouped/history", { method: 'post', payload });
+    }
     constructor(access) {
         super(access, "https://seller-analytics-api.wildberries.ru");
     }
