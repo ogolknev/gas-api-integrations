@@ -15,6 +15,7 @@ export declare class Statistics extends API_Section implements Sections.Statisti
 }
 export declare class Analytics extends API_Section implements Sections.Analytics.Methods {
     pcStatistics(payload: Sections.Analytics.PCStatistics.RequestBody): Sections.Analytics.PCStatistics.Response;
+    pcStatisticsHistory(payload: Sections.Analytics.PCStatisticsHistory.RequestBody): Sections.Analytics.PCStatisticsHistory.Response;
     pcStatisticsGroupedHistory(payload: Sections.Analytics.PCStatisticsGroupedHistory.RequestBody): Sections.Analytics.PCStatisticsGroupedHistory.Response;
     constructor(access: string);
 }

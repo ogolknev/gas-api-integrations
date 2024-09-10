@@ -41,6 +41,9 @@ class Analytics extends API_Section {
     pcStatistics(payload) {
         return this.fetch("/api/v2/nm-report/detail", { method: 'post', payload });
     }
+    pcStatisticsHistory(payload) {
+        return this.fetch("/api/v2/nm-report/detail/history", { method: 'post', payload });
+    }
     pcStatisticsGroupedHistory(payload) {
         return this.fetch("/api/v2/nm-report/grouped/history", { method: 'post', payload });
     }
