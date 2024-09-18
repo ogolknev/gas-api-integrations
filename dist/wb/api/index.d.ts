@@ -45,7 +45,7 @@ export declare class Analytics extends API_Section implements Sections.Analytics
 }
 export declare class Advert extends API_Section implements Sections.Advert.Methods {
     campaignsLists(): {
-        content: any;
+        content: Sections.Advert.CampaignsLists.Response;
         response: GoogleAppsScript.URL_Fetch.HTTPResponse;
     };
     campaignsStatistics(payload: Sections.Advert.CampaignsStatistics.RequestBody.WithDate): {
