@@ -3,7 +3,10 @@ export namespace Sections {
     namespace DiscountsPrices { 
 
         interface Methods {
-            getProducts(query: GetProducts.Query): GetProducts.Response
+            getProducts(query: GetProducts.Query): {
+                content: GetProducts.Response,
+                response: GoogleAppsScript.URL_Fetch.HTTPResponse
+            }
         }
 
         namespace GetProducts {
@@ -43,9 +46,18 @@ export namespace Sections {
     namespace Statistics {
 
         interface Methods {
-            warehouse(query: Warehouse.Query): Warehouse.Response
-            orders(query: Orders.Query): Orders.Response
-            sales(query: Sales.Query): Sales.Response
+            warehouse(query: Warehouse.Query): {
+                content: Warehouse.Response,
+                response: GoogleAppsScript.URL_Fetch.HTTPResponse
+            }
+            orders(query: Orders.Query): {
+                content: Orders.Response,
+                response: GoogleAppsScript.URL_Fetch.HTTPResponse
+            }
+            sales(query: Sales.Query): {
+                content: Sales.Response,
+                response: GoogleAppsScript.URL_Fetch.HTTPResponse
+            }
         }
 
         namespace Supplies { }
@@ -150,9 +162,18 @@ export namespace Sections {
     namespace Analytics {
 
         interface Methods {
-            pcStatistics(payload: PCStatistics.RequestBody): PCStatistics.Response
-            pcStatisticsHistory(payload: PCStatisticsHistory.RequestBody): PCStatisticsHistory.Response
-            pcStatisticsGroupedHistory(payload: PCStatisticsGroupedHistory.RequestBody): PCStatisticsGroupedHistory.Response
+            pcStatistics(payload: PCStatistics.RequestBody): {
+                content: PCStatistics.Response,
+                response: GoogleAppsScript.URL_Fetch.HTTPResponse
+            }
+            pcStatisticsHistory(payload: PCStatisticsHistory.RequestBody): {
+                content: PCStatisticsHistory.Response,
+                response: GoogleAppsScript.URL_Fetch.HTTPResponse
+            }
+            pcStatisticsGroupedHistory(payload: PCStatisticsGroupedHistory.RequestBody): {
+                content: PCStatisticsGroupedHistory.Response,
+                response: GoogleAppsScript.URL_Fetch.HTTPResponse
+            }
         }
 
         namespace PCStatistics {
@@ -346,9 +367,18 @@ export namespace Sections {
     namespace Advert {
 
         interface Methods {
-            campaignsLists(): CampaignsLists.Response
-            campaignsStatistics(payload: CampaignsStatistics.RequestBody.WithDate): CampaignsStatistics.Response.WithDate
-            campaignsStatistics(payload: CampaignsStatistics.RequestBody.WithInterval): CampaignsStatistics.Response.WithInterval
+            campaignsLists(): {
+                content: CampaignsLists.Response,
+                response: GoogleAppsScript.URL_Fetch.HTTPResponse
+            } 
+            campaignsStatistics(payload: CampaignsStatistics.RequestBody.WithDate): {
+                content: CampaignsStatistics.Response.WithDate,
+                response: GoogleAppsScript.URL_Fetch.HTTPResponse
+            }
+            campaignsStatistics(payload: CampaignsStatistics.RequestBody.WithInterval): {
+                content: CampaignsStatistics.Response.WithInterval,
+                response: GoogleAppsScript.URL_Fetch.HTTPResponse
+            }
         }
 
         namespace CampaignsLists {

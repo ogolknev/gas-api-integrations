@@ -1,28 +1,61 @@
 import { Sections } from "./types";
 declare class API_Section {
-    fetch: (url: string, options?: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions) => any;
+    fetch: (url: string, options?: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions) => {
+        content: any;
+        response: GoogleAppsScript.URL_Fetch.HTTPResponse;
+    };
     constructor(access: string, baseUrl: string);
 }
 export declare class DiscountsPrices extends API_Section implements Sections.DiscountsPrices.Methods {
-    getProducts(query: Sections.DiscountsPrices.GetProducts.Query): Sections.DiscountsPrices.GetProducts.Response;
+    getProducts(query: Sections.DiscountsPrices.GetProducts.Query): {
+        content: any;
+        response: GoogleAppsScript.URL_Fetch.HTTPResponse;
+    };
     constructor(access: string);
 }
 export declare class Statistics extends API_Section implements Sections.Statistics.Methods {
-    warehouse(query: Sections.Statistics.Warehouse.Query): Sections.Statistics.Warehouse.Response;
-    orders(query: Sections.Statistics.Orders.Query): Sections.Statistics.Orders.Response;
-    sales(query: Sections.Statistics.Sales.Query): Sections.Statistics.Sales.Response;
+    warehouse(query: Sections.Statistics.Warehouse.Query): {
+        content: any;
+        response: GoogleAppsScript.URL_Fetch.HTTPResponse;
+    };
+    orders(query: Sections.Statistics.Orders.Query): {
+        content: any;
+        response: GoogleAppsScript.URL_Fetch.HTTPResponse;
+    };
+    sales(query: Sections.Statistics.Sales.Query): {
+        content: any;
+        response: GoogleAppsScript.URL_Fetch.HTTPResponse;
+    };
     constructor(access: string);
 }
 export declare class Analytics extends API_Section implements Sections.Analytics.Methods {
-    pcStatistics(payload: Sections.Analytics.PCStatistics.RequestBody): Sections.Analytics.PCStatistics.Response;
-    pcStatisticsHistory(payload: Sections.Analytics.PCStatisticsHistory.RequestBody): Sections.Analytics.PCStatisticsHistory.Response;
-    pcStatisticsGroupedHistory(payload: Sections.Analytics.PCStatisticsGroupedHistory.RequestBody): Sections.Analytics.PCStatisticsGroupedHistory.Response;
+    pcStatistics(payload: Sections.Analytics.PCStatistics.RequestBody): {
+        content: any;
+        response: GoogleAppsScript.URL_Fetch.HTTPResponse;
+    };
+    pcStatisticsHistory(payload: Sections.Analytics.PCStatisticsHistory.RequestBody): {
+        content: any;
+        response: GoogleAppsScript.URL_Fetch.HTTPResponse;
+    };
+    pcStatisticsGroupedHistory(payload: Sections.Analytics.PCStatisticsGroupedHistory.RequestBody): {
+        content: any;
+        response: GoogleAppsScript.URL_Fetch.HTTPResponse;
+    };
     constructor(access: string);
 }
 export declare class Advert extends API_Section implements Sections.Advert.Methods {
-    campaignsLists(): Sections.Advert.CampaignsLists.Response;
-    campaignsStatistics(payload: Sections.Advert.CampaignsStatistics.RequestBody.WithDate): Sections.Advert.CampaignsStatistics.Response.WithDate;
-    campaignsStatistics(payload: Sections.Advert.CampaignsStatistics.RequestBody.WithInterval): Sections.Advert.CampaignsStatistics.Response.WithInterval;
+    campaignsLists(): {
+        content: any;
+        response: GoogleAppsScript.URL_Fetch.HTTPResponse;
+    };
+    campaignsStatistics(payload: Sections.Advert.CampaignsStatistics.RequestBody.WithDate): {
+        content: Sections.Advert.CampaignsStatistics.Response.WithDate;
+        response: GoogleAppsScript.URL_Fetch.HTTPResponse;
+    };
+    campaignsStatistics(payload: Sections.Advert.CampaignsStatistics.RequestBody.WithInterval): {
+        content: Sections.Advert.CampaignsStatistics.Response.WithInterval;
+        response: GoogleAppsScript.URL_Fetch.HTTPResponse;
+    };
     constructor(access: string);
 }
 export {};
