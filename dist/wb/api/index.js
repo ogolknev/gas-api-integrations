@@ -15,7 +15,7 @@ class API_Section {
 }
 class DiscountsPrices extends API_Section {
     getProducts(query) {
-        return this.fetch((0, utils_1.setQuery)("/api/v2/list/goods/filter", query), { method: 'get' });
+        return (0, utils_1.formatHTTPResponse)(this.fetch((0, utils_1.setQuery)("/api/v2/list/goods/filter", query), { method: 'get' }));
     }
     constructor(access) {
         super(access, "https://discounts-prices-api.wildberries.ru");
@@ -24,13 +24,13 @@ class DiscountsPrices extends API_Section {
 exports.DiscountsPrices = DiscountsPrices;
 class Statistics extends API_Section {
     warehouse(query) {
-        return this.fetch((0, utils_1.setQuery)("/api/v1/supplier/stocks", query), { method: 'get' });
+        return (0, utils_1.formatHTTPResponse)(this.fetch((0, utils_1.setQuery)("/api/v1/supplier/stocks", query), { method: 'get' }));
     }
     orders(query) {
-        return this.fetch((0, utils_1.setQuery)("/api/v1/supplier/orders", query), { method: 'get' });
+        return (0, utils_1.formatHTTPResponse)(this.fetch((0, utils_1.setQuery)("/api/v1/supplier/orders", query), { method: 'get' }));
     }
     sales(query) {
-        return this.fetch((0, utils_1.setQuery)("/api/v1/supplier/sales", query), { method: 'get' });
+        return (0, utils_1.formatHTTPResponse)(this.fetch((0, utils_1.setQuery)("/api/v1/supplier/sales", query), { method: 'get' }));
     }
     constructor(access) {
         super(access, "https://statistics-api.wildberries.ru");
@@ -39,13 +39,13 @@ class Statistics extends API_Section {
 exports.Statistics = Statistics;
 class Analytics extends API_Section {
     pcStatistics(payload) {
-        return this.fetch("/api/v2/nm-report/detail", { method: 'post', payload });
+        return (0, utils_1.formatHTTPResponse)(this.fetch("/api/v2/nm-report/detail", { method: 'post', payload }));
     }
     pcStatisticsHistory(payload) {
-        return this.fetch("/api/v2/nm-report/detail/history", { method: 'post', payload });
+        return (0, utils_1.formatHTTPResponse)(this.fetch("/api/v2/nm-report/detail/history", { method: 'post', payload }));
     }
     pcStatisticsGroupedHistory(payload) {
-        return this.fetch("/api/v2/nm-report/grouped/history", { method: 'post', payload });
+        return (0, utils_1.formatHTTPResponse)(this.fetch("/api/v2/nm-report/grouped/history", { method: 'post', payload }));
     }
     constructor(access) {
         super(access, "https://seller-analytics-api.wildberries.ru");
@@ -54,10 +54,10 @@ class Analytics extends API_Section {
 exports.Analytics = Analytics;
 class Advert extends API_Section {
     campaignsLists() {
-        return this.fetch("/adv/v1/promotion/count");
+        return (0, utils_1.formatHTTPResponse)(this.fetch("/adv/v1/promotion/count"));
     }
     campaignsStatistics(payload) {
-        return this.fetch("/adv/v2/fullstats", { method: 'post', payload });
+        return (0, utils_1.formatHTTPResponse)(this.fetch("/adv/v2/fullstats", { method: 'post', payload }));
     }
     constructor(access) {
         super(access, "https://advert-api.wildberries.ru");

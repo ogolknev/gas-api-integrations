@@ -1,14 +1,6 @@
 export namespace Sections {
     namespace Content { }
     namespace DiscountsPrices { 
-
-        interface Methods {
-            getProducts(query: GetProducts.Query): {
-                content: GetProducts.Response,
-                response: GoogleAppsScript.URL_Fetch.HTTPResponse
-            }
-        }
-
         namespace GetProducts {
             interface Query {
                 limit: number
@@ -44,22 +36,6 @@ export namespace Sections {
         namespace DBS { }
     }
     namespace Statistics {
-
-        interface Methods {
-            warehouse(query: Warehouse.Query): {
-                content: Warehouse.Response,
-                response: GoogleAppsScript.URL_Fetch.HTTPResponse
-            }
-            orders(query: Orders.Query): {
-                content: Orders.Response,
-                response: GoogleAppsScript.URL_Fetch.HTTPResponse
-            }
-            sales(query: Sales.Query): {
-                content: Sales.Response,
-                response: GoogleAppsScript.URL_Fetch.HTTPResponse
-            }
-        }
-
         namespace Supplies { }
         namespace Warehouse {
             interface Query {
@@ -160,22 +136,6 @@ export namespace Sections {
         namespace RealizationSalesReport { }
     }
     namespace Analytics {
-
-        interface Methods {
-            pcStatistics(payload: PCStatistics.RequestBody): {
-                content: PCStatistics.Response,
-                response: GoogleAppsScript.URL_Fetch.HTTPResponse
-            }
-            pcStatisticsHistory(payload: PCStatisticsHistory.RequestBody): {
-                content: PCStatisticsHistory.Response,
-                response: GoogleAppsScript.URL_Fetch.HTTPResponse
-            }
-            pcStatisticsGroupedHistory(payload: PCStatisticsGroupedHistory.RequestBody): {
-                content: PCStatisticsGroupedHistory.Response,
-                response: GoogleAppsScript.URL_Fetch.HTTPResponse
-            }
-        }
-
         namespace PCStatistics {
             type RequestBody = {
                 brandNames?: Array<string>
@@ -365,22 +325,6 @@ export namespace Sections {
         }
     }
     namespace Advert {
-
-        interface Methods {
-            campaignsLists(): {
-                content: CampaignsLists.Response,
-                response: GoogleAppsScript.URL_Fetch.HTTPResponse
-            } 
-            campaignsStatistics(payload: CampaignsStatistics.RequestBody.WithDate): {
-                content: CampaignsStatistics.Response.WithDate,
-                response: GoogleAppsScript.URL_Fetch.HTTPResponse
-            }
-            campaignsStatistics(payload: CampaignsStatistics.RequestBody.WithInterval): {
-                content: CampaignsStatistics.Response.WithInterval,
-                response: GoogleAppsScript.URL_Fetch.HTTPResponse
-            }
-        }
-
         namespace CampaignsLists {
             type Response = {
                 adverts: Array<{
@@ -540,4 +484,11 @@ export namespace Sections {
     namespace BuyerChat { }
     namespace Returns { }
     namespace Documents { }
+}
+export namespace Common {
+    interface HTTPResponse<T> {
+        status: number,
+        headers: object,
+        content: T
+    }
 }
