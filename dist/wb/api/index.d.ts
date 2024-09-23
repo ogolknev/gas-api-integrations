@@ -21,7 +21,8 @@ export declare class Analytics extends API_Section {
 }
 export declare class Advert extends API_Section {
     campaignsLists(): Common.HTTPResponse<Sections.Advert.CampaignsLists.Response>;
-    campaignsInformation(): Common.HTTPResponse<Sections.Advert.CampaignsInformation.Response>;
+    campaignsInformation(query: Sections.Advert.CampaignsInformation.Query): Common.HTTPResponse<Sections.Advert.CampaignsInformation.Response>;
+    campaignsInformation(payload: Sections.Advert.CampaignsInformation.RequestBody): Common.HTTPResponse<Sections.Advert.CampaignsInformation.Response>;
     campaignsStatistics(payload: Sections.Advert.CampaignsStatistics.RequestBody.WithDate): Common.HTTPResponse<Sections.Advert.CampaignsStatistics.Response.WithDate>;
     campaignsStatistics(payload: Sections.Advert.CampaignsStatistics.RequestBody.WithInterval): Common.HTTPResponse<Sections.Advert.CampaignsStatistics.Response.WithInterval>;
     constructor(access: string);

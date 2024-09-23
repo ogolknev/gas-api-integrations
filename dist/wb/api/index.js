@@ -64,8 +64,11 @@ class Advert extends API_Section {
     campaignsLists() {
         return (0, utils_1.formatHTTPResponse)(this.fetch("/adv/v1/promotion/count"));
     }
-    campaignsInformation() {
-        return (0, utils_1.formatHTTPResponse)(this.fetch("/adv/v1/promotion/adverts"));
+    campaignsInformation(queryOrPayload) {
+        if (Array.isArray(queryOrPayload)) {
+            return (0, utils_1.formatHTTPResponse)(this.fetch("/adv/v1/promotion/adverts", { payload: queryOrPayload, method: 'post' }));
+        }
+        return (0, utils_1.formatHTTPResponse)(this.fetch((0, utils_1.setQuery)("/adv/v1/promotion/adverts", queryOrPayload), { method: 'post' }));
     }
     campaignsStatistics(payload) {
         return (0, utils_1.formatHTTPResponse)(this.fetch("/adv/v2/fullstats", { method: "post", payload }));
