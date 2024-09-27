@@ -1,6 +1,6 @@
 export namespace Sections {
   namespace Content {
-    namespace CardsList {
+    namespace CardList {
       interface Query {
         locale: 'ru' | 'en' | 'zh'
       }

@@ -28,7 +28,7 @@ export declare class Advert extends API_Section {
     constructor(access: string);
 }
 export declare class Content extends API_Section {
-    cardsList(payload: Sections.Content.CardsList.RequestBody, query?: Sections.Content.CardsList.Query): Common.HTTPResponse<Sections.Content.CardsList.Response>;
+    cardList(payload: Sections.Content.CardList.RequestBody, query?: Sections.Content.CardList.Query): Common.HTTPResponse<Sections.Content.CardList.Response>;
     constructor(access: string);
 }
 export {};

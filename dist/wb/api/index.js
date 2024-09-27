@@ -84,7 +84,7 @@ class Advert extends API_Section {
 }
 exports.Advert = Advert;
 class Content extends API_Section {
-    cardsList(payload, query) {
+    cardList(payload, query) {
         let url = "/content/v2/get/cards/list";
         if (query)
             url = (0, utils_1.setQuery)(url, query);
