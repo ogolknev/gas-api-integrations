@@ -1,5 +1,80 @@
 export namespace Sections {
-  namespace Content {}
+  namespace Content {
+    namespace CardsList {
+      interface Query {
+        locale: 'ru' | 'en' | 'zh'
+      }
+      type RequestBody = {
+        settings: {
+          sort?: {
+            ascending: boolean;
+          };
+          filter: {
+            textSearch?: string;
+            allowedCategoriesOnly?: boolean;
+            tagIDs?: Array<any>;
+            objectIDs?: Array<any>;
+            brands?: Array<any>;
+            imtID?: number;
+            withPhoto: -1 | 0 | 1;
+          };
+          cursor: {
+            updatedAt?: string;
+            nmID?: number;
+            limit: number;
+          };
+        };
+      };
+      type Response = {
+        cards: Array<{
+          nmID: number;
+          imtID: number;
+          nmUUID: string;
+          subjectID: number;
+          subjectName: string;
+          vendorCode: string;
+          brand: string;
+          title: string;
+          photos: Array<{
+            big: string;
+            c246x328: string;
+            c516x688: string;
+            square: string;
+            tm: string;
+          }>;
+          video: string;
+          dimensions: {
+            length: number;
+            width: number;
+            height: number;
+            isValid: boolean;
+          };
+          characteristics: Array<{
+            id: number;
+            name: string;
+            value: Array<string>;
+          }>;
+          sizes: Array<{
+            chrtID: number;
+            techSize: string;
+            skus: Array<string>;
+          }>;
+          tags: Array<{
+            id: number;
+            name: string;
+            color: string;
+          }>;
+          createdAt: string;
+          updatedAt: string;
+        }>;
+        cursor: {
+          updatedAt: string;
+          nmID: number;
+          total: number;
+        };
+      };
+    }
+  }
   namespace DiscountsPrices {
     namespace GetProducts {
       interface Query {

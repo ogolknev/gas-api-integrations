@@ -27,4 +27,8 @@ export declare class Advert extends API_Section {
     campaignsStatistics(payload: Sections.Advert.CampaignsStatistics.RequestBody.WithInterval): Common.HTTPResponse<Sections.Advert.CampaignsStatistics.Response.WithInterval>;
     constructor(access: string);
 }
+export declare class Content extends API_Section {
+    cardsList(payload: Sections.Content.CardsList.RequestBody, query?: Sections.Content.CardsList.Query): Common.HTTPResponse<Sections.Content.CardsList.Response>;
+    constructor(access: string);
+}
 export {};

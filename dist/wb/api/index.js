@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Advert = exports.Analytics = exports.Statistics = exports.DiscountsPrices = void 0;
+exports.Content = exports.Advert = exports.Analytics = exports.Statistics = exports.DiscountsPrices = void 0;
 const utils_1 = require("../../utils");
 class API_Section {
     constructor(access, baseUrl) {
@@ -66,9 +66,14 @@ class Advert extends API_Section {
     }
     campaignsInformation(queryOrPayload) {
         if (Array.isArray(queryOrPayload)) {
-            return (0, utils_1.formatHTTPResponse)(this.fetch("/adv/v1/promotion/adverts", { payload: queryOrPayload, method: 'post' }));
+            return (0, utils_1.formatHTTPResponse)(this.fetch("/adv/v1/promotion/adverts", {
+                payload: queryOrPayload,
+                method: "post",
+            }));
         }
-        return (0, utils_1.formatHTTPResponse)(this.fetch((0, utils_1.setQuery)("/adv/v1/promotion/adverts", queryOrPayload), { method: 'post' }));
+        return (0, utils_1.formatHTTPResponse)(this.fetch((0, utils_1.setQuery)("/adv/v1/promotion/adverts", queryOrPayload), {
+            method: "post",
+        }));
     }
     campaignsStatistics(payload) {
         return (0, utils_1.formatHTTPResponse)(this.fetch("/adv/v2/fullstats", { method: "post", payload }));
@@ -78,3 +83,18 @@ class Advert extends API_Section {
     }
 }
 exports.Advert = Advert;
+class Content extends API_Section {
+    cardsList(payload, query) {
+        let url = "/content/v2/get/cards/list";
+        if (query)
+            url = (0, utils_1.setQuery)(url, query);
+        return (0, utils_1.formatHTTPResponse)(this.fetch(url, {
+            method: "post",
+            payload,
+        }));
+    }
+    constructor(access) {
+        super(access, "https://content-api.wildberries.ru");
+    }
+}
+exports.Content = Content;
