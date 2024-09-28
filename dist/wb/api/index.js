@@ -75,6 +75,14 @@ class PromotionStatistics {
         return this.fetch("/adv/v2/fullstats", { method: "post", payload });
     }
 }
+class SalesFunnel {
+    constructor(fetch) {
+        this.fetch = fetch;
+    }
+    productCardStatisticsHistory(payload) {
+        return this.fetch("https://seller-analytics-api.wildberries.ru/api/v2/nm-report/detail/history", { method: "post", payload });
+    }
+}
 class Reports extends API_Section {
     constructor(access) {
         super(access);
