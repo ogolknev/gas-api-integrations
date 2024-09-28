@@ -1,7 +1,8 @@
-import { Statistics, Analytics, Advert } from "./wb/api";
+import { ProductManagment, MarketingAndPromotion, AnalyticsAndData, Reports } from "./wb/api";
 export declare class Wildberries {
-    statistics: Statistics;
-    analytics: Analytics;
-    advert: Advert;
+    productManagment: ProductManagment;
+    marketingAndPromotion: MarketingAndPromotion;
+    analyticsAndData: AnalyticsAndData;
+    reports: Reports;
     constructor(access: string);
 }
