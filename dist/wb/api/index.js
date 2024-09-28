@@ -73,7 +73,10 @@ class PromotionStatistics {
         this.fetch = fetch;
     }
     campaignsStatistics(payload) {
-        return this.fetch("/adv/v2/fullstats", { method: "post", payload });
+        return this.fetch("https://advert-api.wildberries.ru/adv/v2/fullstats", {
+            method: "post",
+            payload,
+        });
     }
 }
 class SalesFunnel {
