@@ -48,6 +48,7 @@ declare class CampaignManagement {
 export declare class AnalyticsAndData extends API_Section {
     constructor(access: string);
     promotionStatistics: PromotionStatistics;
+    salesFunnel: SalesFunnel;
 }
 declare class PromotionStatistics {
     constructor(fetch: ReturnType<typeof configuredFetch>);
@@ -58,6 +59,15 @@ declare class PromotionStatistics {
     };
     campaignsStatistics(payload: WB_API.AnalyticsAndData.PromotionStatistics.CampaignsStatistics.RequestBody.WithDate): Common.HTTPResponse<WB_API.AnalyticsAndData.PromotionStatistics.CampaignsStatistics.Response.WithDate>;
     campaignsStatistics(payload: WB_API.AnalyticsAndData.PromotionStatistics.CampaignsStatistics.RequestBody.WithInterval): Common.HTTPResponse<WB_API.AnalyticsAndData.PromotionStatistics.CampaignsStatistics.Response.WithInterval>;
+}
+declare class SalesFunnel {
+    constructor(fetch: ReturnType<typeof configuredFetch>);
+    fetch: (url: string, options?: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions) => {
+        status: number;
+        headers: object;
+        content: any;
+    };
+    productCardStatisticsHistory(payload: WB_API.AnalyticsAndData.SalesFunnel.ProductCardStatisticsHistory.RequestBody): Common.HTTPResponse<WB_API.AnalyticsAndData.SalesFunnel.ProductCardStatisticsHistory.Response>;
 }
 export declare class Reports extends API_Section {
     constructor(access: string);

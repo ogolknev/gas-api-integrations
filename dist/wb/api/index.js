@@ -64,6 +64,7 @@ class AnalyticsAndData extends API_Section {
     constructor(access) {
         super(access);
         this.promotionStatistics = new PromotionStatistics(this.fetch);
+        this.salesFunnel = new SalesFunnel(this.fetch);
     }
 }
 exports.AnalyticsAndData = AnalyticsAndData;
