@@ -98,14 +98,14 @@ class ProductReports {
     constructor(fetch) {
         this.fetch = fetch;
     }
-    warehouse() {
-        return this.fetch("https://statistics-api.wildberries.ru/api/v1/supplier/stocks", { method: "get" });
+    warehouse(query) {
+        return this.fetch((0, utils_1.setQuery)("https://statistics-api.wildberries.ru/api/v1/supplier/stocks", query), { method: "get" });
     }
-    orders() {
-        return this.fetch("https://statistics-api.wildberries.ru/api/v1/supplier/orders", { method: "get" });
+    orders(query) {
+        return this.fetch((0, utils_1.setQuery)("https://statistics-api.wildberries.ru/api/v1/supplier/orders", query), { method: "get" });
     }
-    sales() {
-        return this.fetch("https://statistics-api.wildberries.ru/api/v1/supplier/sales", { method: "get" });
+    sales(query) {
+        return this.fetch((0, utils_1.setQuery)("https://statistics-api.wildberries.ru/api/v1/supplier/sales", query), { method: "get" });
     }
 }
 // deprecated
