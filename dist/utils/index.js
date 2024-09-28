@@ -13,7 +13,7 @@ function configuredFetch(baseOptions, baseUrl = "") {
 }
 function setQuery(url, query) {
     if (!query)
-        return query;
+        return url;
     return (url +
         "?" +
         Object.keys(query)
