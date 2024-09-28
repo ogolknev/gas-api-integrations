@@ -82,7 +82,7 @@ declare class ProductReports {
     };
     warehouse(): Common.HTTPResponse<WB_API.Reports.ProductReports.Warehouse.Response>;
     orders(): Common.HTTPResponse<WB_API.Reports.ProductReports.Orders.Response>;
-    sales(): Common.HTTPResponse<WB_API.Reports.ProductReports.Orders.Response>;
+    sales(): Common.HTTPResponse<WB_API.Reports.ProductReports.Sales.Response>;
 }
 export declare class DiscountsPrices extends API_Section {
     getProducts(query: Sections.DiscountsPrices.GetProducts.Query): Common.HTTPResponse<Sections.DiscountsPrices.GetProducts.Response>;
