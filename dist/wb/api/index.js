@@ -91,6 +91,7 @@ class Reports extends API_Section {
     constructor(access) {
         super(access);
         this.productReports = new ProductReports(this.fetch);
+        this.paidStorage = new PaidStorage(this.fetch);
     }
 }
 exports.Reports = Reports;

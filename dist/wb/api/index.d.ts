@@ -72,6 +72,7 @@ declare class SalesFunnel {
 export declare class Reports extends API_Section {
     constructor(access: string);
     productReports: ProductReports;
+    paidStorage: PaidStorage;
 }
 declare class ProductReports {
     constructor(fetch: ReturnType<typeof configuredFetch>);
@@ -83,6 +84,17 @@ declare class ProductReports {
     warehouse(query: WB_API.Reports.ProductReports.Warehouse.Query): Common.HTTPResponse<WB_API.Reports.ProductReports.Warehouse.Response>;
     orders(query: WB_API.Reports.ProductReports.Orders.Query): Common.HTTPResponse<WB_API.Reports.ProductReports.Orders.Response>;
     sales(query: WB_API.Reports.ProductReports.Sales.Query): Common.HTTPResponse<WB_API.Reports.ProductReports.Sales.Response>;
+}
+declare class PaidStorage {
+    constructor(fetch: ReturnType<typeof configuredFetch>);
+    fetch: (url: string, options?: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions) => {
+        status: number;
+        headers: object;
+        content: any;
+    };
+    generateReport(query: WB_API.Reports.PaidStorage.GenerateReport.Query): Common.HTTPResponse<WB_API.Reports.PaidStorage.GenerateReport.Response>;
+    checkStatus(path: WB_API.Reports.PaidStorage.CheckStatus.Path): Common.HTTPResponse<WB_API.Reports.PaidStorage.CheckStatus.Response>;
+    getReport(path: WB_API.Reports.PaidStorage.GetReport.Path): Common.HTTPResponse<WB_API.Reports.PaidStorage.GetReport.Response>;
 }
 export declare class DiscountsPrices extends API_Section {
     getProducts(query: Sections.DiscountsPrices.GetProducts.Query): Common.HTTPResponse<Sections.DiscountsPrices.GetProducts.Response>;
