@@ -8,7 +8,50 @@ function configuredFetch(baseOptions, baseUrl = "") {
         if (options === null || options === void 0 ? void 0 : options.payload) {
             options.payload = JSON.stringify(options.payload);
         }
-        return formatHTTPResponse(UrlFetchApp.fetch(baseUrl + url, Object.assign(Object.assign({}, baseOptions), options)));
+        let response = formatHTTPResponse(UrlFetchApp.fetch(baseUrl + url, Object.assign(Object.assign({}, baseOptions), options)));
+        // class HTTPResponseError extends Error {
+        //   constructor(message: string, code: number) {
+        //     super(message);
+        //     this.code = code;
+        //   }
+        //   code: number;
+        // }
+        // while (response.status !== Common.HTTPResponseStatus.success) {
+        //   switch (response.status) {
+        //     case Common.HTTPResponseStatus.badRequest:
+        //       throw new HTTPResponseError(
+        //         "Bad request." + JSON.stringify(response.content),
+        //         Common.HTTPResponseStatus.badRequest
+        //       );
+        //     case Common.HTTPResponseStatus.unauthorized:
+        //       throw new HTTPResponseError(
+        //         "Unauthorized.",
+        //         Common.HTTPResponseStatus.unauthorized
+        //       );
+        //     case Common.HTTPResponseStatus.accessDenied:
+        //       throw new HTTPResponseError(
+        //         "Access denied.",
+        //         Common.HTTPResponseStatus.accessDenied
+        //       );
+        //     case Common.HTTPResponseStatus.notFound:
+        //       throw new HTTPResponseError(
+        //         "Not found",
+        //         Common.HTTPResponseStatus.notFound
+        //       );
+        //     case Common.HTTPResponseStatus.tooManyRequests:
+        //       throw new HTTPResponseError(
+        //         "Too many request.",
+        //         Common.HTTPResponseStatus.tooManyRequests
+        //       );
+        //     default:
+        //       console.error(JSON.stringify(response.content));
+        //       break;
+        //   }
+        //   response = formatHTTPResponse(
+        //     UrlFetchApp.fetch(baseUrl + url, { ...baseOptions, ...options })
+        //   );
+        // }
+        return response;
     };
 }
 function setQuery(url, query) {
@@ -21,6 +64,9 @@ function setQuery(url, query) {
             .join("&"));
 }
 function formatHTTPResponse(response) {
+    if (!response) {
+        throw new Error("No response.");
+    }
     return {
         status: response.getResponseCode(),
         headers: response.getHeaders(),

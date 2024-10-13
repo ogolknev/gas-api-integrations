@@ -654,6 +654,60 @@ export namespace WB_API {
         }>;
       }
     }
+    namespace PaidStorage {
+      namespace GenerateReport {
+        type Query = {
+          dateFrom: string
+          dateTo: string
+        }
+        type Response = {
+          data: {
+            taskId: string;
+          };
+        };
+      }
+      namespace CheckStatus {
+        type Path = {
+          task_id: string
+        };
+        type Response = {
+          data: {
+            id: string;
+            status: string;
+          };
+        };
+      }
+      namespace GetReport {
+        type Path = {
+          task_id: string;
+        };
+        type Response = Array<{
+          date: string;
+          logWarehouseCoef: number;
+          officeId: number;
+          warehouse: string;
+          warehouseCoef: number;
+          giId: number;
+          chrtId: number;
+          size: string;
+          barcode: string;
+          subject: string;
+          brand: string;
+          vendorCode: string;
+          nmId: number;
+          volume: number;
+          calcType: string;
+          warehousePrice: number;
+          barcodesCount: number;
+          palletPlaceCode: number;
+          palletCount: number;
+          originalDate: string;
+          loyaltyDiscount: number;
+          tariffFixDate: string;
+          tariffLowerDate: string;
+        }>;
+      }
+    }
   }
   namespace DocumentsAndAccounting {}
 }
@@ -1318,5 +1372,13 @@ export namespace Common {
     status: number;
     headers: object;
     content: T;
+  }
+  enum HTTPResponseStatus {
+    success = 200,
+    badRequest = 400,
+    unauthorized = 401,
+    accessDenied = 403,
+    notFound = 404,
+    tooManyRequests = 429
   }
 }

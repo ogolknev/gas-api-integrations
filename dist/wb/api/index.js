@@ -108,6 +108,20 @@ class ProductReports {
         return this.fetch((0, utils_1.setQuery)("https://statistics-api.wildberries.ru/api/v1/supplier/sales", query), { method: "get" });
     }
 }
+class PaidStorage {
+    constructor(fetch) {
+        this.fetch = fetch;
+    }
+    generateReport(query) {
+        return this.fetch((0, utils_1.setQuery)("https://seller-analytics-api.wildberries.ru/api/v1/paid_storage", query));
+    }
+    checkStatus(path) {
+        return this.fetch(`https://seller-analytics-api.wildberries.ru/api/v1/paid_storage/tasks/${path.task_id}/status`);
+    }
+    getReport(path) {
+        return this.fetch(`https://seller-analytics-api.wildberries.ru/api/v1/paid_storage/tasks/${path.task_id}/download`);
+    }
+}
 // deprecated
 class DiscountsPrices extends API_Section {
     getProducts(query) {
